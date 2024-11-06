@@ -109,10 +109,20 @@ namespace JsonDemo2_1735
             Console.WriteLine($"投資人帳號: {deserializedGuarantee.SearchBar.Account}");
             Console.WriteLine($"成交狀態: {deserializedGuarantee.SearchBar.Transaction}");
             Console.WriteLine($"還券狀態: {deserializedGuarantee.SearchBar.Repayment}");
-
-            Console.ReadLine();
             #endregion
 
+
+            Console.WriteLine("\n(擔保單的已申報擔保總金額)：");
+            // 利用迴圈跑 deserializedGuarantee.GuaranteeList 中的每一個物件(暫稱list)
+            foreach (var list in deserializedGuarantee.GuaranteeList)
+            {
+                // 利用迴圈跑 list.GuaranteeSummaries 中的每一個物件(暫稱summary)
+                foreach (var summary in list.GuaranteeSummaries)
+                {
+                    Console.WriteLine($"擔保日: {summary.GuaranteeDate}，序號：{summary.GuaranteeSN}，已申報擔保總金額：{summary.ReportedGuaranteeAmount}");
+                   
+                }
+            }
         }
     }
 }
